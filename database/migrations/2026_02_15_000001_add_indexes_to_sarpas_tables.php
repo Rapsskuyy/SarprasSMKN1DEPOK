@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('peminjaman', function (Blueprint $table) {
+            $table->index('status');
+            $table->index('created_at');
+        });
+
+        Schema::table('barang', function (Blueprint $table) {
+            $table->index('nama');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('peminjaman', function (Blueprint $table) {
+            $table->dropIndex(['status']);
+            $table->dropIndex(['created_at']);
+        });
+
+        Schema::table('barang', function (Blueprint $table) {
+            $table->dropIndex(['nama']);
+        });
+    }
+};
